@@ -1,3 +1,7 @@
+# Proavus
+## 
+
+### Much to do still
 General
 	- Invite family members to your family so they can view/edit
 	- Authentication (w/ Auth0)
@@ -24,8 +28,4 @@ Search
 
 Account
 	- update first name, last name, email, password, photo
-
-
-
-
 
