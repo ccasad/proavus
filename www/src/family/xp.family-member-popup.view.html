@@ -1,0 +1,24 @@
+<div class="list">
+  <label class="item item-input">
+    <input type="text" data-ng-model="familyMemberPopup.name_first" placeholder="First name">
+  </label>
+  <label class="item item-input">
+  	<input type="text" data-ng-model="familyMemberPopup.name_last" placeholder="Last name">
+  </label>
+  <label class="item item-input item-select">
+    <div class="input-label">
+      &nbsp;
+    </div>
+    <select data-ng-model="familyMemberPopup.relation">
+    	<option value="0" selected="selected" data-ng-bind="familyMemberPopup.relationText"></option>
+      <option value="1">Father</option>
+      <option value="2">Mother</option>
+      <option value="3">Brother</option>
+      <option value="4">Sister</option>
+      <option value="5">Husband</option>
+      <option value="6">Wife</option>
+      <option value="7">Son</option>
+      <option value="8">Daughter</option>
+    </select>
+  </label>
+</div>

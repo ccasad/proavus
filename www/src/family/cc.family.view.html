@@ -1,0 +1,72 @@
+<ion-view view-title="{{vm.title}}">
+
+  <ion-nav-buttons side="right">
+    <button class="button button-positive" data-ng-click="vm.promptUser()">
+      <i class="icon ion-plus-round"></i>
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content class="padding"> 
+
+  	<!-- if no families yet then have a card that explains that need to create a family first and have a text box to allow the user to enter a family name to create one -->
+    <div class="list card" data-ng-show="!vm.families">
+  		<div class="item item-divider">
+        Add New Family
+      </div>
+      <div class="item item-text-wrap">
+  			<p>You have no families created yet. You can create as many families as you want. After creating a family you can add members to the family. Let's add a family! Click the Add Family button to begin.</p>
+        <div>
+          <button class="button button-block button-positive" data-ng-click="vm.promptUser()">
+            Add New Family
+          </button>
+        </div>
+			</div>
+    </div>
+
+  	<!-- if family selected but no members created yet then explain they can create a member and give a firstname, lastname textbox and button to take them to the member creation page -->
+    <div class="list card" data-ng-show="vm.families && vm.family && !vm.family.members">
+      <div class="item item-divider">
+        <span data-ng-bind="vm.addNewFamilyMembersHeader"></span>
+      </div>
+      <div class="item item-text-wrap">
+        <p>You have no family members created yet for the <span data-ng-bind="vm.family.name"></span> family. You can create as many family members as you want. Let's create a family member! Click the Add New Family Member button to being.</p>
+        <div>
+          <button class="button button-block button-positive" data-ng-click="vm.promptUser()">
+            Add New Family Member
+          </button>
+        </div>
+      </div>
+    </div>
+
+  	<!-- if family selected and members exist then show list of members in alphabetical order -->
+
+  	<div class="list card" data-ng-show="vm.families && vm.family && vm.family.members">
+      <!--
+      <div class="item item-divider item-icon-left">
+        <i class="icon ion-ios-person"></i> A
+      </div>
+      -->
+      <a class="item item-avatar item-icon-right" data-ng-repeat="person in vm.family.members | orderBy:'name_first'">
+        <img src="/img/avatars/blank.jpg">
+        <i class="icon ion-ios-arrow-right"></i>
+        <span data-ng-bind="person.name_first+' '+person.name_last"></span>
+        <p>My Daughter</p>
+      </a>
+    </div>
+
+    <!-- if families exist but user hasn't selected one then give the same list as what is shown on the status page to pick a family -->
+    <div class="list card" data-ng-show="vm.families && !vm.family">
+      <div class="item item-divider item-icon-left">
+        <i class="icon ion-ios-people"></i> My Families
+      </div>
+      <a class="item item-icon-right" data-ng-repeat="family in vm.families | orderBy:'name'" href="#/tab/family/{{family._id}}">
+        <i class="icon ion-ios-arrow-right"></i>
+        <span data-ng-bind="family.name"></span>
+        <p>? family members</p>
+      </a>
+    </div>
+
+  </ion-content>
+</ion-view>
+
+

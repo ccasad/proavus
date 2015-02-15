@@ -1,0 +1,46 @@
+<!--
+  - shows the user's different families
+  - shows the current number of family members
+  - shows the number of family members that have accounts
+  - shows if family members have added/edited anything
+-->
+<ion-view view-title="Status">
+  <ion-content class="padding">
+    <div class="list card">
+      <div class="item item-divider item-icon-left item-icon-right">
+        <i class="icon ion-ios-people"></i> 
+        Families
+        <i class="icon ion-plus-round"></i>
+      </div>
+      <a class="item item-icon-right" data-ng-repeat="family in vm.families | orderBy: family.name">
+        <i class="icon ion-ios-arrow-right"></i>
+        <span data-ng-bind="family.name"></span>
+        <p>? family members</p>
+      </a>
+    </div>
+    <div class="list card">
+      <div class="item item-divider item-icon-left">
+        <i class="icon ion-ios-person"></i> Active Family Members
+      </div>
+      <a class="item item-avatar item-icon-right">
+        <img src="/img/avatars/guy1.jpg">
+        <i class="icon ion-ios-arrow-right"></i>
+        Steve Casad
+        <p>Addition Today 3:45 pm</p>
+      </a>
+      <a class="item item-avatar item-icon-right">
+        <img src="img/avatars/girl1.jpg">
+        <i class="icon ion-ios-arrow-right"></i>
+        Mary Ellen Miller
+        <p>Edit Fri 1:19 pm</p>
+      </a>
+      <a class="item item-avatar item-icon-right">
+        <img src="img/avatars/blank.jpg">
+        <i class="icon ion-ios-arrow-right"></i>
+        Pat Dame
+        <p>Deletion Tues 9:56 am</p>
+      </a>
+    </div>
+
+  </ion-content>
+</ion-view>

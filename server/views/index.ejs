@@ -1,0 +1,124 @@
+<html ng-app="famtreeAppApi">
+<head>
+  <title><%= title %></title>
+</head>
+<body>
+
+<h1><%= title %></h1>
+
+<ng-view></ng-view>
+
+<!-- Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-resource.min.js"></script>
+
+<!-- Template -->
+<script type="text/ng-template" id="/persons.html">
+    Search: <input type="text" ng-model="search.name">
+  <ul>
+    <li ng-repeat="person in persons | filter: search">
+      <a ng-show="!editing[$index]" href="#/{{person._id}}">{{person.name_first + ' ' + person.name_last}}</a>
+      <button ng-show="!editing[$index]" ng-click="edit($index)">edit</button>
+      <button ng-show="!editing[$index]" ng-click="remove($index)">remove</button>
+      <input ng-show="editing[$index]" type="text" ng-model="person.name_first">
+      <input ng-show="editing[$index]" type="text" ng-model="person.name_last">
+      <button ng-show="editing[$index]" ng-click="update($index)">Update</button>
+      <button ng-show="editing[$index]" ng-click="cancel($index)">Cancel</button>
+    </li>
+  </ul>
+  New Person <input type="text" ng-model="newPersonFirstName" placeholder="First Name"><input type="text" ng-model="newPersonLastName" placeholder="Last Name"><button ng-click="save()">Create</button>
+</script>
+
+<script type="text/ng-template" id="/personDetails.html">
+  <h1>{{ person.name }}</h1>
+  first name: <input type="text" ng-model="person.name_first"><br/>
+  last name: <input type="text" ng-model="person.name_last"><br/>
+  <button ng-click="update()">Update</button>
+  <button ng-click="remove()">Remove</button>
+  <a href="/">Cancel</a>
+</script>
+
+<script>
+  angular.module('famtreeAppApi', ['ngRoute', 'ngResource'])
+    
+    .factory('persons', ['$resource', function($resource) {
+      return $resource('/persons/:id', null, {
+        'update': { method: 'PUT' }
+      });
+    }])
+
+    .controller('PersonController', ['$scope', 'persons', function ($scope, persons) {
+      $scope.editing = [];
+      $scope.persons = persons.query();
+
+      $scope.save = function(){
+        if (!$scope.newPersonFirstName || $scope.newPersonFirstName.length < 1 || !$scope.newPersonLastName || $scope.newPersonLastName.length < 1) return;
+        var person = new persons({ 
+          name_first: $scope.newPersonFirstName, 
+          name_last: $scope.newPersonLastName 
+        });
+
+        person.$save(function(){
+          $scope.persons.push(person);
+          $scope.newPersonFirstName = ''; // clear textbox
+          $scope.newPersonLastName = ''; // clear textbox
+        });
+      };
+
+      $scope.update = function(index){
+        var person = $scope.persons[index];
+        persons.update({id: person._id}, person);
+        $scope.editing[index] = false;
+      };
+
+      $scope.edit = function(index){
+        $scope.editing[index] = angular.copy($scope.persons[index]);
+      };
+
+      $scope.cancel = function(index){
+        $scope.persons[index] = angular.copy($scope.editing[index]);
+        $scope.editing[index] = false;
+      };
+
+      $scope.remove = function(index){
+       var person = $scope.persons[index];
+       persons.remove({id: person._id}, function(){
+          $scope.persons.splice(index, 1);
+        });
+      };
+
+    }])
+
+    .controller('PersonDetailCtrl', ['$scope', '$routeParams', 'persons', '$location', function ($scope, $routeParams, persons, $location) {
+      $scope.person = persons.get({id: $routeParams.id });
+
+      $scope.update = function(){
+        persons.update({id: $scope.person._id}, $scope.person, function(){
+          $location.url('/');
+        });
+      };
+
+      $scope.remove = function(){
+        persons.remove({id: $scope.person._id}, function(){
+          $location.url('/');
+        });
+      };
+    }])
+
+    .config(['$routeProvider', function ($routeProvider) {
+      $routeProvider
+        .when('/', {
+          templateUrl: '/persons.html',
+          controller: 'PersonController'
+        })
+
+        .when('/:id', {
+          templateUrl: '/personDetails.html',
+          controller: 'PersonDetailCtrl'
+       });
+    }]);
+</script>
+
+</body>
+</html>
