@@ -1,8 +1,8 @@
-# Proavus
+# Proavus (Greek for ancestor)
 
-### Proavus is greek for ancestor. Proavus the app, is used to help you map out your family and it's history.
+### Proavus the app, is used to help you map out your family and it's history. Built with the Ionic Framework, AngularJS, NodeJS, MongooseJS and MongoDB.
 
-##### <em>Much to do still</em>
+##### <em>A ton of work still to do!</em>
 
 ###### General
 - Invite family members to your family so they can view/edit
