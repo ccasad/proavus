@@ -1,8 +1,8 @@
 # Proavus
 
-### Proavus is greek for ancestor. Proavus the app is used to help you map out your family and it's history.
+### Proavus is greek for ancestor. Proavus the app, is used to help you map out your family and it's history.
 
-#### Much to do still
+##### <em>Much to do still</em>
 
 ###### General
 - Invite family members to your family so they can view/edit
