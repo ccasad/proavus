@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('ccFamTree')
+    .module('ccProavus')
     .factory('ccPersonFcty', ccPersonFcty);
 
 	ccPersonFcty.$inject = ['$resource', 'lodash'];

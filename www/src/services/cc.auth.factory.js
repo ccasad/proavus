@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('ccFamTree')
+    .module('ccProavus')
     .factory('ccAuthFcty', ccAuthFcty);
 
 	ccAuthFcty.$inject = ['ccPersonFcty'];

@@ -1,0 +1,42 @@
+<ion-view view-title="{{vm.family.name}} Family">
+
+	<ion-nav-buttons side="right">
+    <button class="button button-positive" data-ng-click="vm.promptNewFamilyMember()">
+      <i class="icon ion-plus-round"></i>
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content class="padding">
+
+  	<!-- family selected but no members created yet then explain they can create a member and give a firstname, lastname textbox and button to take them to the member creation page -->
+    <div class="list card" data-ng-show="vm.family && !vm.family.members">
+      <div class="item item-divider">
+        <span data-ng-bind="vm.addNewFamilyMembersHeader"></span>
+      </div>
+      <div class="item item-text-wrap">
+        <p>You have no family members created yet for the <span data-ng-bind="vm.family.name"></span> family. You can create as many family members as you want. Let's create a family member! Click the Add New Family Member button to being.</p>
+        <div>
+          <button class="button button-block button-positive" data-ng-click="vm.promptUser()">
+            Add New Family Member
+          </button>
+        </div>
+      </div>
+    </div>
+
+  	<!-- family selected and members exist then show list of members in alphabetical order -->
+  	<div class="list card" data-ng-show="vm.family && vm.family.members">
+      <!--
+      <div class="item item-divider item-icon-left">
+        <i class="icon ion-ios-person"></i> A
+      </div>
+      -->
+      <a class="item item-avatar item-icon-right" data-ng-repeat="person in vm.family.members | orderBy:'name_first'">
+        <img src="/img/avatars/blank.jpg">
+        <i class="icon ion-ios-arrow-right"></i>
+        <span data-ng-bind="person.name_first+' '+person.name_last"></span>
+        <p>My Daughter</p>
+      </a>
+    </div>
+
+  </ion-content>
+</ion-view>

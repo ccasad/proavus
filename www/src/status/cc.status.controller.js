@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('ccFamTree')
+    .module('ccProavus')
     .controller('CcStatusCtrl', CcStatusCtrl);
 
   CcStatusCtrl.$inject = ['ccPersonFcty', 'ccFamilyFcty'];
@@ -15,12 +15,14 @@
     activate();
 
     function activate() {
-      ccPersonFcty.query().$promise.then(function(data) {
-        var persons = data;
-      });
-      ccFamilyFcty.query().$promise.then(function(data) {
-        vm.families = data;
-      });
+
+      // ccPersonFcty.query().$promise.then(function(data) {
+      //   var persons = data;
+      // });
+      // ccFamilyFcty.query().$promise.then(function(data) {
+      //   vm.families = data;
+      // });
+      
     }
   }
 })();

@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('ccFamTree', ['ionic', 'ngResource', 'ngMessages', 'ngLodash'])
+    .module('ccProavus', ['ionic', 'ngResource', 'ngMessages', 'ngLodash'])
     .run(runBlock);
 
   runBlock.$inject = ['$ionicPlatform'];

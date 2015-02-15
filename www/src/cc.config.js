@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('ccFamTree')
+    .module('ccProavus')
     .config(configuration);
 
   configuration.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -53,12 +53,22 @@
           }
         }
       })
-      .state('tab.family-detail', {
-        url: '/family/:familyId',
+      .state('tab.family.detail', {
+        url: '/:familyId',
         views: {
-          'tab-family': {
-            templateUrl: 'src/family/cc.family.view.html',
-            controller: 'CcFamilyCtrl as vm'
+          'tab-family-detail': {
+            templateUrl: 'src/family/cc.family-detail.view.html',
+            controller: 'CcFamilyDetailCtrl as vm'
+          }
+        }
+      })
+
+      .state('tab.member', {
+        url: '/member/:memberId',
+        views: {
+          'tab-member': {
+            templateUrl: 'src/member/cc.member.view.html',
+            controller: 'CcMemberCtrl as vm'
           }
         }
       })

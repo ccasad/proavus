@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('ccFamTree')
+        .module('ccProavus')
         .controller('CcSearchCtrl', CcSearchCtrl);
 
     /* @ngInject */
