@@ -17,7 +17,7 @@
 
       // setup an abstract state for the tabs directive
       .state('tab', {
-        url: '/tab',
+        /*url: '/tab',*/
         abstract: true,
         templateUrl: 'src/layout/cc.tabs.view.html'
       })
@@ -46,31 +46,28 @@
 
       .state('tab.family', {
         url: '/family',
+        abstract: true,
         views: {
           'tab-family': {
-            templateUrl: 'src/family/cc.family.view.html',
-            controller: 'CcFamilyCtrl as vm'
+            template: '<ion-nav-view></ion-nav-view>'
           }
         }
+      })
+      .state('tab.family.list', {
+        url: '',
+        templateUrl: 'src/family/cc.family.view.html',
+        controller: 'CcFamilyCtrl as vm'
       })
       .state('tab.family.detail', {
         url: '/:familyId',
-        views: {
-          'tab-family-detail': {
-            templateUrl: 'src/family/cc.family-detail.view.html',
-            controller: 'CcFamilyDetailCtrl as vm'
-          }
-        }
+        templateUrl: 'src/family/cc.family-detail.view.html',
+        controller: 'CcFamilyDetailCtrl as vm'
       })
 
-      .state('tab.member', {
+      .state('tab.family.member', {
         url: '/member/:memberId',
-        views: {
-          'tab-member': {
-            templateUrl: 'src/member/cc.member.view.html',
-            controller: 'CcMemberCtrl as vm'
-          }
-        }
+        templateUrl: 'src/member/cc.member.view.html',
+        controller: 'CcMemberCtrl as vm'
       })
 
       .state('tab.account', {

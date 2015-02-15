@@ -5,9 +5,9 @@
     .module('ccProavus', ['ionic', 'ngResource', 'ngMessages', 'ngLodash'])
     .run(runBlock);
 
-  runBlock.$inject = ['$ionicPlatform'];
+  runBlock.$inject = ['$rootScope', '$ionicPlatform'];
 
-  function runBlock($ionicPlatform) {
+  function runBlock($rootScope, $ionicPlatform) {
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -19,6 +19,7 @@
         StatusBar.styleDefault();
       }
     });
+
   }
 
 })();

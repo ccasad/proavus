@@ -5,10 +5,10 @@
     .module('ccProavus')
     .controller('CcMemberCtrl', CcMemberCtrl);
 
-  CcMemberCtrl.$inject = ['$scope', '$state', '$ionicPopup', 'lodash', 'ccAuthFcty', 'ccFamilyFcty', 'ccPersonFcty'];
+  CcMemberCtrl.$inject = ['$state', 'ccAuthFcty', 'ccPersonFcty'];
 
   /* @ngInject */
-  function CcMemberCtrl() {
+  function CcMemberCtrl($state, ccAuthFcty, ccPersonFcty) {
     /*jshint validthis: true */
     var vm = this;
 
